@@ -1,21 +1,21 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
-const config = require('./config/index')
-const registroParticipantesRoutes = require('./routes/registroParticipantes.routes')
+const PORT = process.env.PORT || 3000
+const userRoutes = require('./routes/users.routes')
 
-// const registroRoutes = required("")
+// const registroParticipantesRoutes = require('./routes/registroParticipantes.routes')
 
 // Middelwares
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cors())
-app.disable('etag')
-app.use('/api/v1/registro-participantes', registroParticipantesRoutes)
+// app.use('/api/v1/registro-participantes', registroParticipantesRoutes)
+app.use('/users', userRoutes)
 
-// Enviroments var
-const nodeEnv = process.env.BACKEND_ENV || 'local'
-const PORT = config[nodeEnv].PORT
-
-app.listen(PORT, () => { console.log(`Run on port: ${PORT}`) })
+// Establecemos el puerto de escucha
+app.listen(PORT, () => {
+  console.log(`🚀 Server listening on port: ${PORT}`)
+})
