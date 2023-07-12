@@ -4,16 +4,18 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const PORT = process.env.PORT || 3000
-const userRoutes = require('./routes/users.routes')
 
-// const registroParticipantesRoutes = require('./routes/registroParticipantes.routes')
+const userRoutes = require('./routes/users.routes')
+const inscriptionRouter = require('./routes/inscription.routes')
 
 // Middelwares
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cors())
-// app.use('/api/v1/registro-participantes', registroParticipantesRoutes)
+
+// routes
 app.use('/users', userRoutes)
+app.use('/inscription', inscriptionRouter)
 
 // Establecemos el puerto de escucha
 app.listen(PORT, () => {
