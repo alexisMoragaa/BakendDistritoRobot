@@ -50,8 +50,8 @@ const setParticipants = async (data, idInscription) => {
     (
       ${conn.escape(name)},
       ${conn.escape(rut)},
-      ${conn.escape(correo)},
       ${conn.escape(phone)},
+      ${conn.escape(correo)},
       ${conn.escape(idInscription)}
     )
     `
